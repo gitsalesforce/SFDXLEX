@@ -1,0 +1,9 @@
+<apex:page showHeader="false" sidebar="false" standardController="Account">  
+    <br/>
+    <apex:pageBlock title="Create zip of Attachment files">
+        <center>
+            <apex:sectionHeader title="Account" subtitle="{!Account.name}"/>
+            <c:VFZipComponent attachmentIds="00P2800000DXTifEAH,00P2800000EVZAgEAP" generatedFileName="MyZip" mode="button"/>
+        </center>
+    </apex:pageBlock>
+ </apex:page>

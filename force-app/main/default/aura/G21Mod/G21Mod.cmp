@@ -1,0 +1,8 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="eventMessage" type="String"/> 
+    <aura:handler name="sampleCmpEvent" event="c:G21ModEvent" action="{!c.parentComponentEvent}"/>
+    <div class="slds-m-around_xx-large">
+        <c:G22Mod /> 
+        <p>{!v.eventMessage}</p> 
+    </div>
+</aura:component>

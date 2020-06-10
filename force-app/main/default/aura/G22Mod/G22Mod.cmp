@@ -1,0 +1,7 @@
+<!--Child.cmp-->
+<aura:component >
+    <aura:registerEvent name="sampleCmpEvent" type="c:G21ModEvent" />
+
+    <lightning:button label="Click to fire the event" variant="brand" onclick="{!c.childComponentEvent}"/>
+
+</aura:component>
