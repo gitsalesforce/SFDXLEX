@@ -1,0 +1,7 @@
+.THIS {
+}
+
+.THIS table tr td:first-child {
+    position:sticky;
+    z-index: 1
+}

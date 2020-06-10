@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Callout" icon-name="standard:product_consumed">
+     <div class="slds-m-around_medium">
+         <lightning-button label="get movies playing now" variant="brand" onclick={handleCallout} class="slds-p-vertical_small"></lightning-button>
+            <!-- hello -->
+     </div>
+             <template for:each={movies} for:item="movie">
+                 <c-movie-tile
+                 key={movie._Id}
+                 title={movie._title}
+                 language={movie._original_language}
+                 overview={movie._overview}
+                 vote={movie._vote_average}
+                 release-date={movie._release_date}
+                 poster-path={movie._poster_path}
+                 class="slds-m-around_xx-large"
+                 >
+                 </c-movie-tile>
+                 <br key={movie._Id}/>
+             </template>
+ </lightning-card>
+</template>

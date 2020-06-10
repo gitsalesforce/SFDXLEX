@@ -1,0 +1,52 @@
+<aura:component>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="message" type="String" default=""/>
+    <aura:handler event="aura:waiting" action="{!c.waiting}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+    <aura:attribute name="isOpen" type="boolean" default="True"/>
+    <aura:if isTrue="{!v.isOpen}">
+        <div class="slds-modal__container container">
+            <header class="slds-modal__header">
+                <h2 id="modal-heading" class="slds-text-heading_medium slds-hyphenate">Hello World</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium modal-body" id="modal-content-id-1">
+                <div class="slds">
+                    <form id="form">
+                        <div class="slds-form--inline">
+                            <div class="slds-form-element">
+                                <div aura:id="uploading" class="notUploading">
+                                    <img src="/img/loading32.gif" alt="sending" class="small-spinner" /> Sending...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form--inline">
+                            <div class="slds-m-vertical_medium">
+                                <h1 class="slds-text-heading_small">Formatted Address with Link</h1>
+                                <p class="slds-text-body_regular">This component formats an address and uses latitude and longitude for Google Maps.</p>
+                            </div>
+                            
+                            <lightning:formattedAddress
+                                                        street="121 Spear St."
+                                                        city="San Francisco"
+                                                        country="US"
+                                                        province="CA"
+                                                        postalCode="94105"
+                                                        latitude="37.792179"
+                                                        longitude="-122.392735"
+                                                        />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button variant="neutral" 
+                                  label="Close"
+                                  onclick="{! c.closeModel }"
+                                  title="Close"
+                                  />
+            </footer>
+        </div>
+        <div class="slds-backdrop "/>
+    </aura:if>
+    <!--###### MODAL BOX Part END Here ######-->
+</aura:component>

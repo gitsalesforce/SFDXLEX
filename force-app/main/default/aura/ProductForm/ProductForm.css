@@ -1,0 +1,55 @@
+.THIS {
+}
+.THIS .custom-name{
+    font-size:30px; 
+    font-weight:700;
+    
+}
+.THIS .custom{
+    font-size:40px;
+    border :1px solid white;
+}
+.THIS .new-cl{
+    font-size:30px;
+}
+.THIS .borders{
+    border: 1px solid black;
+}
+.THIS .custom-code{
+    font-size:30px; 
+    align-text:center;
+}
+
+.THIS .custom-unitprice{
+    font-size:30px; 
+}
+
+.THIS .custom-description{
+    font-size:20px; 
+    
+}
+.THIS .levelup{
+    font-size:20px;
+}
+.THIS .cart{
+    flex:auto;
+    
+}
+.THIS slds-button{
+    font-weight: bold;
+    background-color: #4CAF50;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+.THIS .slds-button:hover {
+    background-color: #3e8e41;
+}
+
+.THIS .slds-button:focus {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+    transition: 0.3s;
+}

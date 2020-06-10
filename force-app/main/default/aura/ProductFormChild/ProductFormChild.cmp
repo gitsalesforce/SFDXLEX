@@ -1,0 +1,55 @@
+<aura:component >
+    <!--Aura Methods for child calling from Parent-->
+    <aura:method name="sampleMethod" action="{!c.doAction}" access="public">
+        <aura:attribute name="param" type="Product2[]"/> 
+        <aura:attribute name ="param1" type="PricebookEntry[]"/>
+    </aura:method>
+    <aura:attribute name="mydata3" type="Product2[]" /> <!-- create Array type Product variable-->
+    <aura:attribute name="totalcost" type="Integer"/>
+    <article class="slds-card">
+        <lightning:layout class="slds-page-header slds-page-header--object-home slds-align_absolute-center">
+            <lightning:layoutItem>
+                <lightning:icon iconName="action:goal" alternativeText=""/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h3 class="slds-text-heading--large">Product List</h3>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <div class="slds-col">
+           
+            <table class="slds-table slds-table_bordered slds-table--header-fixed">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="ProductCode">ProductCode</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="counter">Quantity</div>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.mydata3}" var="con">
+                        <tr>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.Name}">{!con.Name}</div>
+                            </th>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.ProductCode}">{!con.ProductCode}</div>
+                            </th>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.QuantityUnitOfMeasure}">{!con.QuantityUnitOfMeasure}</div>
+                            </th>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table> 
+        </div>
+    </article>
+</aura:component>

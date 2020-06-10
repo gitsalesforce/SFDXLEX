@@ -1,0 +1,144 @@
+<template>
+  <div class="slds-grid slds-grid_vertical">
+    <div class="slds-col">
+      <div class="slds-page-header">
+        <div class="slds-grid">
+          <div class="slds-col slds-has-flexi-truncate">
+            <p class="slds-text-title_caps slds-line-height_reset">
+              Account Details
+            </p>
+            <h1
+              class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate"
+              title="My Contacts"
+            >
+              My Account 
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slds-col">
+      <lightning-datatable
+        key-field="id"
+        data={currentPageData}
+        onrowaction={handleRowAction}
+        row-number-offset={rowOffset}
+        hide-checkbox-column="true"
+        columns={columns}
+        sorted-by={sortBy}
+        sorted-direction={sortDirection}
+        onsort={handleSortdata}
+      ></lightning-datatable>
+      <template if:true={bShowModal}>
+        <section
+          role="dialog"
+          tabindex="-1"
+          aria-labelledby="modal-heading-01"
+          aria-modal="true"
+          aria-describedby="modal-content-id-1"
+          class="slds-modal slds-fade-in-open"
+        >
+          <div class="slds-modal__container">
+            <!-- modal header start -->
+            <header class="slds-modal__header">
+              <button
+                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                title="Close"
+                onclick={closeModal}
+              >
+                <lightning-icon
+                  icon-name="utility:close"
+                  alternative-text="close"
+                  variant="inverse"
+                  size="small"
+                ></lightning-icon>
+              </button>
+              <h2
+                id="modal-heading-01"
+                class="slds-text-heading_medium slds-hyphenate"
+              >
+                Record Detail
+              </h2>
+            </header>
+            <!-- modal body start -->
+            <div
+              class="slds-modal__content slds-p-around_medium"
+              id="modal-content-id-1"
+            >
+              <dl class="slds-list_horizontal slds-wrap">
+                <dt class="slds-item_label slds-truncate" title="Name">
+                  Name:
+                </dt>
+                <dd class="slds-item_detail slds-truncate">{record.Name}</dd>
+                <dt class="slds-item_label slds-truncate" title="Phone">
+                  Phone:
+                </dt>
+                <dd class="slds-item_detail slds-truncate">{record.Phone}</dd>
+                <dt class="slds-item_label slds-truncate" title="Type">
+                  Type :
+                </dt>
+                <dd class="slds-item_detail slds-truncate">{record.Type}</dd>
+                <dt class="slds-item_label slds-truncate" title="Industry">
+                  Industry :
+                </dt>
+                <dd class="slds-item_detail slds-truncate">
+                  {record.Industry}
+                </dd>
+                <dt class="slds-item_label slds-truncate" title="Website">
+                  Website :
+                </dt>
+                <dd class="slds-item_detail slds-truncate">{record.Website}</dd>
+                <dt class="slds-item_label slds-truncate" title="Rating">
+                  Rating :
+                </dt>
+                <dd class="slds-item_detail slds-truncate">{record.Rating}</dd>
+              </dl>
+            </div>
+            <!-- modal footer start-->
+            <footer class="slds-modal__footer">
+              <lightning-button
+                variant="brand"
+                label="Close"
+                title="Close"
+                onclick={closeModal}
+              >
+              </lightning-button>
+            </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+    </div>
+    <div class="slds-col">
+      <div class="slds-align_absolute-center">
+        <ul class="slds-button-group-row">
+          <template if:true={hasPrev}>
+            <li class="slds-button-group-item">
+              <button class="slds-button slds-button_neutral" onclick={onPrev}>
+                prev
+              </button>
+            </li>
+          </template>
+          <template for:each={pagesList} for:item="pageNumber">
+            <li class="slds-button-group-item" key={pageNumber}>
+              <button
+                data-id={pageNumber}
+                class="slds-button slds-button_neutral"
+                onclick={onPageClick}
+              >
+                {pageNumber}
+              </button>
+            </li>
+          </template>
+          <template if:true={hasNext}>
+            <li class="slds-button-group-item">
+              <button class="slds-button slds-button_neutral" onclick={onNext}>
+                next
+              </button>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>

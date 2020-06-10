@@ -1,0 +1,148 @@
+<aura:component controller="newsfi" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="searchResult" type="List" description="use for store and display news selected from server"/>
+    <aura:attribute name="country1" type="String" description="use for store country name"/>
+    <aura:attribute name="searchanything" type="String" description="use for search anything"/>
+    <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> <!-- calling doInit method in Component Controller -->
+    <aura:attribute name="newsresponse" type="newsfi.categorynews[]" />  
+    <article class="slds-card">
+        <!-- Home Icon--> 
+        <lightning:layout class="slds-page-header slds-align_absolute-center">
+            <lightning:layoutItem>
+                <lightning:icon iconName="action:goal" alternativeText=""/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h3 class="slds-text-heading--small">News List</h3>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <!-- Search Anything compoennt-->
+        <lightning:layout class="slds-align_absolute-center">
+            <lightning:layoutItem size="8">
+                <lightning:input value="{!v.searchanything}"
+                                 required="true"
+                                 placeholder="Search Anything"
+                                 aura:id="searchField"
+                                 label=""/>				               
+            </lightning:layoutItem>
+            <lightning:layoutItem size="2" class="slds-size_2-of-12 slds-p-top_large slds-p-right_large">
+                <lightning:button onclick="{!c.SearchAnything}"
+                                  variant="brand"
+                                  class="slds-button_success"
+                                  label="Search"
+                                  iconName="utility:search"/> 
+            </lightning:layoutItem>
+        </lightning:layout>
+        <!-- Country Code compoennt--> 
+        <lightning:layout class="slds-align_absolute-center slds-m-around_medium">
+            <lightning:layoutItem size="4">
+                <lightning:select name="country" label="Country Codes" value="New" aura:id="statusPicklist">
+                    <option value="ar">Argentina</option>
+                    <option value="at">Austria</option>
+                    <option value="au">Australia</option>
+                    <option value="be">Belgium</option>
+                    <option value="bg">Bulgaria</option>
+                    <option value="br">Brazil</option>
+                    <option value="ca">Canada</option>
+                    <option value="cn">China</option>
+                    <option value="co">Colombia</option>
+                    <option value="cu">Cuba</option>
+                    <option value="cz">Czeh Republic</option>
+                    <option value="de">Germany</option>
+                    <option value="eg">Egypt</option>
+                    <option value="fr">France</option>
+                    <option value="gr">Greece</option>
+                    <option value="hk">Hong Kong</option>
+                    <option value="hu">Hungary</option>
+                    <option value="id">Indonesia</option>
+                    <option value="ie">Ireland</option>
+                    <option value="il">Israel</option>
+                    <option value="in">India</option>
+                    <option value="it">italy</option>
+                    <option value="jp">Japan</option>
+                    <option value="lt">Lithuania</option>
+                    <option value="lv">Latvia</option>
+                    <option value="ma">Morocco</option>
+                    <option value="mx">Mexico</option>
+                    <option value="my">Malaysia</option>
+                    <option value="ng">Nigeria</option>
+                    <option value="nl">Netherlands</option>
+                    <option value="no">Norway</option>
+                    <option value="nz">NewsZealand</option>
+                    <option value="ph">Philippines</option>
+                    <option value="pl">Poland</option>
+                    <option value="pt">Portugal</option>
+                    <option value="ro">Romania</option>
+                    <option value="rs">Serbia</option>
+                    <option value="ru">Russia</option>
+                    <option value="sa">Saudi Arabia</option>
+                    <option value="se">US</option>
+                    <option value="sg">Singapore</option>
+                    <option value="si">Slovenia</option>
+                    <option value="sk">Slovakia</option>
+                    <option value="th">Thailand</option>
+                    <option value="tr">Turkey</option>
+                    <option value="tw">Taiwan</option>
+                    <option value="us">United States</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="ve">Venuzuela</option>
+                </lightning:select>
+            </lightning:layoutItem>
+            <!-- SEARCH INPUT AND SEARCH BUTTON--> 
+            <lightning:layoutItem size="2" class="slds-size_2-of-12 slds-p-top_large slds-p-right_large">
+                <lightning:button onclick="{!c.Search}"
+                                  variant="brand"
+                                  class="slds-button_success"
+                                  label="Search"
+                                  iconName="utility:search"/> 
+            </lightning:layoutItem>
+        </lightning:layout>
+        <!-- Category News compoennt--> 
+        <lightning:layout class="slds-align_absolute-center slds-p-right_xx-large slds-m-right_xx-large">
+            <lightning:button aura:id="category_button_sports" variant="brand" class="custom_button" label="Sports" title="Sports" onclick="{!c.handlesports }"/>
+            <lightning:button aura:id="category_button_business" variant="brand" class="custom_button" label="Business" title="Business" onclick="{!c.handlebusiness}"/>
+            <lightning:button aura:id="category_button_general" variant="brand" class="custom_button" label="General" title="general" onclick="{!c.handlegeneral }" />
+            <lightning:button aura:id="category_button_health" variant="brand" class="custom_button" label="Health" title="health" onclick="{!c.handlehealth }" />
+            <lightning:button aura:id="category_button_science" variant="brand" class="custom_button" label="Science" title="science" onclick="{!c.handlescience  }"/>
+            <lightning:button aura:id="category_button_technology" variant="brand" class="custom_button" label="Technology" title="technology" onclick="{!c.handletechnology }"/>
+            <lightning:button aura:id="category_button_entertainment" variant="brand" class="custom_button" label="Entertainment" title="entertainment" onclick="{!c.handleentertainment }"/>
+            
+            
+        </lightning:layout>
+        <!-- Display News compoennt--> 
+        <div class="slds-grid slds-grid slds-align_absolute-center slds-m-around_medium">
+            <!-- First Pane News compoennt--> 
+            <div class="col slds-card__body slds-align_absolute-center">
+                <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+                    <tbody>
+                        <aura:iteration items="{!v.newsresponse}" var="acc" indexVar="index">
+                            <tr class="slds-hint-parent">
+                                <div class="slds-grid slds-grid_vertical-align-start slds-box slds-theme_shade slds-align_absolute-center slds-large-size_12-of-12">
+                                    
+                                    <div class="slds-grid slds-grid_horizontal slds-medium-size_4-of-12">
+                                        <img src="{!acc.urltoImage}"/>
+                                    </div>
+                                    
+                                    <div class="slds-grid slds-grid_vertical slds-col slds-size_1-of-1 slds-medium-size_6-of-12 justify-content-center">
+                                        <div class="slds-col slds-p-horizontal_small">
+                                            <div class="slds-truncate slds-text-heading_medium title" title="{!acc.title}"><a href="{!acc.url}">Source - {!acc.title}</a></div>
+                                        </div>      
+                                        <div class="slds-truncate slds-col slds-p-horizontal_small slds-p-vertical_small">Author - {!acc.author}</div>
+                                        <div class="slds-truncate slds-col slds-p-horizontal_small slds-p-vertical_small slds-text-longform">{!acc.description}</div>
+                                        
+                                        <div class="slds-truncate slds-col slds-p-horizontal_small slds-p-vertical_small"><a href="{!acc.url}">{!acc.url}</a></div>
+                                        <div class="slds-truncate slds-col slds-p-horizontal_small slds-p-vertical_small">{!acc.publishedAt}</div>
+                                    </div>
+                                </div>
+                            </tr>  
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Second Pane News compoennt--> 
+            <div class="col"></div>
+        </div>
+        <footer class="slds-card__footer"><a href="javascript:void(0);"><!--View All <span class="slds-assistive-text">entity type</span>--></a></footer>
+    </article>
+</aura:component>

@@ -1,0 +1,125 @@
+<aura:component controller="ApexCPQController" >
+    <aura:handler name="init" value="{!this}" action="{!c.initData}"/>
+    <aura:attribute name="CardsWrapper" type="ApexCPQController.CardsWrapper[]"/>
+    <aura:attribute name="OpportunityCPQ" type="Opportunity[]"/>
+    <aura:attribute name="fields" type="String[]" default="['Name','AnnualRevenue','Industry']" />
+    <aura:attribute name="recordId" type="String"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <div class="slds-p-around--small">
+        <div class="slds-grid ss">
+            <aura:iteration items="{!v.CardsWrapper}" var="dash">
+                <div class=" slds-col slds-grid slds-grid_vertical">
+                    <div class="card-contracts">Total Contracts</div>
+                    <div class="card-contracts">{!dash.ContractsCount}</div>
+                    <div class="card-contracts">+ {!dash.ContractToday}</div>
+                </div>
+                <div class="slds-col slds-grid slds-grid_vertical">
+                    <div class="card-Amended">Renewal</div>
+                    <div class="card-Amended">{!dash.AmendCount}</div>
+                    <div class="card-contracts">+ {!dash.AmendToday}</div>
+                </div>
+                <div class="slds-col slds-grid slds-grid_vertical">
+                    <div class="card-Products">Total Available Products</div>
+                    <div class="card-Products">{!dash.ProductCount}</div>
+                </div>
+                <div class="slds-col slds-grid slds-grid_vertical">
+                    <div class="card-Opportunity">Total Opportunity</div>
+                    <div class="card-Opportunity">{!dash.OppsCount}</div>
+                    <div class="card-contracts">+ {!dash.OppsToday}</div>
+                </div>
+            </aura:iteration>
+        </div>
+        
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+                <div class="slds-grid">
+                    <lightning:accordion aura:id="accordion">
+                        <aura:iteration items="{!v.OpportunityCPQ}" var="books">
+                            <lightning:accordionSection name="A" label="{!books.Name}" >
+                                <aura:set attribute="body">
+                                    <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
+                                           role="grid">
+                                        <thead>
+                                            <tr>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    Name
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    StageName
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    Account Name
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    Close Date
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                   	Amount
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    Expected Revenue
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    PrimaryQuote Name
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    ContractedQuote Name
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    RenewedQuote Name
+                                                </th>
+                                                <th class="slds-is-sortable slds-cell-wrap" scope="col">
+                                                    AmendedQuote Name
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="slds-hint-parent">
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="">{!books.Name}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.StageName}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.Account.Name}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.CloseDate}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.Amount}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.ExpectedRevenue}</div>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr class="slds-hint-parent">
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.SBQQ__PrimaryQuote__c}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.SBQQ__Contracted__c}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.SBQQ__RenewedContract__c}</div>
+                                                </td>
+                                                <td role="gridcell" class="slds-cell-wrap">
+                                                    <div class="" data-label="Role">{!books.SBQQ__Renewal__c}</div>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </aura:set>
+                            </lightning:accordionSection>
+                        </aura:iteration>
+                    </lightning:accordion>
+                </div>
+            </div>
+        </div>  
+    </div>
+</aura:component>

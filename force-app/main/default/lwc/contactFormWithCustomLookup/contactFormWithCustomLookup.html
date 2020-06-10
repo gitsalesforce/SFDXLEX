@@ -1,0 +1,15 @@
+<template>
+  <lightning-card title={title} icon-name="standard:account">
+    <lightning-layout-item flexibility="auto" style="padding-left: 1rem;">
+
+      <c-lookup-search label="Custom Lookup - Account" selectedsobject="Account" recordlimit="10"
+        onlookupselect={handlelookupselectaccount} onlookupselectid={handlelookupselectaccountid}></c-lookup-search>
+    </lightning-layout-item>
+
+    <c-account-contact-form-t1 oncontactsuccess={contactCreateSuccess} account-record={selectedAccountRecord}
+      event-record-id={eventRecordId} oncontactcancel={contactCancel}></c-account-contact-form-t1>
+   
+    <!--  <c-relatedlist-t1 account-record={selectedAccountRecord} onaccountselect={handleaccountselectaccount}></c-relatedlist-t1>
+    -->
+    </lightning-card>
+</template>

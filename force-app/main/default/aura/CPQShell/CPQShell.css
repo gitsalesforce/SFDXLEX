@@ -1,0 +1,38 @@
+.THIS {
+    box-sizing:border-box;
+    margin:0px;
+    padding:0px;
+}
+.THIS .ss .slds-col:nth-child(2n){
+    background: #F1948A;
+}
+.THIS .ss .slds-col:nth-child(2n+1){
+    background: #5499C7;
+}
+.THIS .ss .plus{
+    font-size:22px;
+}
+.THIS .ss .slds-col{
+  width: 100px;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin:10px;
+}
+.THIS .card-contracts{
+    font-size:22px;
+}
+.THIS .card-Amended{
+    font-size:22px;
+}
+.THIS .card-Products{
+    font-size:22px;
+}
+.THIS .card-Opportunity{
+    font-size:22px;
+}
+.THIS .slds-accordion{
+    width:-webkit-fill-available;
+}

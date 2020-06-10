@@ -1,0 +1,95 @@
+<aura:component controller="ModalPopup_TaskSvrController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+	
+    <aura:attribute name="PageHeading" type="String" default="Contact Account Details" />
+    <aura:attribute name="mydata" type="List"/>
+    <aura:attribute name="accdata" type="List"/>
+    <aura:attribute name="mydata1" type="List"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    
+    <div class="slds-m-top--xx-large">
+    	<div class="slds-page-header">
+    		<div class="slds-align--absolute-center">
+        		<div class="slds-text-heading--large">       
+    				{!v.PageHeading}
+                </div>
+        	</div>
+    	</div>
+    </div>
+    <br/> <br/>
+    
+    <div class="slds-section slds-is-open">
+        <h3 class="slds-section__title slds-theme_shade">
+      		<span class="slds-truncate slds-p-horizontal_small" title="Section Title">Accounts</span>
+  		</h3>
+        <br/>
+        <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th scope="col"><div class="slds-truncate" title="Account Name">Account Name</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Phone">Phone</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Add" aura:id="selectAll"></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.mydata}" var="row" indexVar="index">
+                    <tr>
+                        <th scope="row"><div class="slds-truncate" title="{!row.Name}">{!row.Name}</div></th>
+                        <td><div class="slds-truncate" title="{!row.Phone}">{!row.Phone}</div></td>
+                        <td>
+                            <div>                           
+                                <lightning:button label="Show PopUp"
+                                                  value="{!row}"
+                                                  name="{!index}"
+                                                  iconName="utility:new_window"
+                                                  iconPosition="left"
+                                                  variant="brand"
+                                                  onclick="{!c.showPopup}"
+                                                />
+                            </div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+    
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal slds-modal_large">
+    	<div class="slds-modal__container" style="width: 40%;">
+        	<div class="slds-modal__header">
+            	<p>Account Details</p>
+            </div>
+            <div class="slds-modal__content slds-p-around--medium">  
+            	<aura:iteration items="{!v.accdata}" var="acc">
+                	Account Name : <ui:outputText value="{!acc.Name}" />
+                    <br/><br/>
+                    Phone : <ui:outputText value="{!acc.Phone}" />
+                </aura:iteration>-->
+                
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th scope="col"><div class="slds-truncate" title="Contact Name">Contact Name</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Phone">Phone</div></th>
+                    <th scope="col"><div class="slds-truncate" title="Add" aura:id="selectAll"></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.mydata1}" var="row1" indexVar="index">
+                    <tr>
+                        <th scope="row"><div class="slds-truncate" title="{!row1.Name}">{!row1.Name}</div></th>
+                        <td><div class="slds-truncate" title="{!row1.Phone}">{!row1.Phone}</div></td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+                
+            </div>
+            <div class="slds-modal__footer">
+            	<lightning:button label="close" onclick="{!c.closeModal}" />
+            </div>
+        </div>
+    </div>
+</aura:component>

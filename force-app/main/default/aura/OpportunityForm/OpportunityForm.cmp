@@ -1,0 +1,67 @@
+<aura:component controller="OppFormcontroller" description="Opportunity App Tracker"
+                implements="flexiPage:availableForAllPageTypes">
+    <aura:attribute name="mycolumns" type="List"/><!--Opportunity Columns-->
+    <aura:attribute name="mycolumnsoppline" type="List"/><!--Opportunity Data Holder-->
+    <aura:attribute name="mydata" type="Object"/><!--Product Columns-->
+    <aura:attribute name="mydataoppline" type="Object"/><!--Product Data Holder-->
+    <aura:attribute name="sortBy" type="String"/>
+    <aura:attribute name="oppro" type="String"/>
+    <aura:registerEvent name="passoppid" type="c:OppProductID"/>
+    <aura:attribute name="sortDirection" type="String"/>
+    <aura:attribute name="showproduct" type="Boolean"/>
+    <aura:handler name="init" value="{! this }" action="{! c.onInit }"/>
+    
+    <!--Page header-->
+    <lightning:layout class="slds-page-header slds-page-header--object-home slds-align_absolute-center">
+        <lightning:layoutItem>
+            <lightning:icon iconName="action:goal" alternativeText="Opportunity Tracker"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h3 class="slds-text-heading--large">Opportunity Record</h3>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!--Data Table for the Opportunity Table-->
+    <div class="slds-grid  slds-grid_vertical">
+        <div class="slds-col">
+            <lightning:datatable aura:id="OpportunityTable"
+                                 keyField="Id"
+                                 hideCheckboxColumn="true"
+                                 data="{!v.mydata}"
+                                 columns="{!v.mycolumns}"
+                                 sortedBy="{!v.sortBy}"
+                                 sortedDirection="{!v.sortDirection}"
+                                 onsort="{!c.handleSort}"
+                                 onresize="{! c.handleResize }"
+                                 onrowaction="{! c.handleRowAction }"/>
+        </div>
+        <lightning:layout class="slds-page-header slds-page-header--object-home slds-align_absolute-center">
+            <lightning:layoutItem>
+                <lightning:icon iconName="action:goal" alternativeText="Opportunity Product's Table"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h3 class="slds-text-heading--large">Opportunity's Product Record</h3>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <div class="slds-col">
+            <lightning:datatable aura:id="OpportunityLineTable"
+                                 keyField="Id"
+                                 hideCheckboxColumn="true"
+                                 data="{!v.mydataoppline}"
+                                 columns="{!v.mycolumnsoppline}"
+                                 sortedBy="{!v.sortBy}"
+                                 sortedDirection="{!v.sortDirection}"
+                                 onsort="{!c.handleSort}"
+                                 onresize="{! c.handleResize }"/>
+        </div>
+        <aura:if isTrue="{! v.showproduct }">
+            <div class="slds-col">
+                <c:ProductForm/>
+            </div>
+        </aura:if>
+    </div>
+    
+</aura:component>

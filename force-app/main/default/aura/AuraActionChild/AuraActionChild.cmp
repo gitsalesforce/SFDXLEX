@@ -1,0 +1,14 @@
+<aura:component controller="AuraActionServerCall" >
+    <aura:method name="childcmpMethodCall">
+        <aura:attribute name="callback" type="Function"/>
+    </aura:method>
+    <aura:method name="childcmpMethodCall1">
+        <aura:attribute name="callback1" type="Function"/>
+    </aura:method>
+    <aura:method name="childcmpMethodCall2">
+        <aura:attribute name="callback2" type="Function"/>
+    </aura:method>
+    <aura:method name="childcmpMethodCall3">
+        <aura:attribute name="callback3" type="Function"/>
+    </aura:method>
+</aura:component>

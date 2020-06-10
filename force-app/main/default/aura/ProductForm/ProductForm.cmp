@@ -1,0 +1,73 @@
+<aura:component controller="ProductFormController" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> <!-- calling doInit method in Component Controller -->
+    <aura:attribute name="ProductList" type="ProductFormController.ProductWrapper[]" />  
+    <aura:attribute name="isSelectAll" type="boolean" default="false"/>
+    <aura:attribute name="aura_action" type="Integer" default="0"/>
+    <aura:attribute name="rows" type="Integer"/>
+    <aura:attribute name="visible" type="Boolean" default="false"/>
+    <article class="slds-card">
+        <lightning:layout class="slds-page-header slds-page-header--object-home slds-align_absolute-center">
+            <lightning:layoutItem>
+                <lightning:icon iconName="action:goal" alternativeText=""/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="horizontal-small">
+                <div class="page-section page-header">
+                    <h3 class="slds-text-heading--large">Product List</h3>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <div class="slds-card__body">
+            <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+                <tbody>
+                    <aura:iteration items="{!v.ProductList}" var="acc"   indexVar="index">
+                        <tr class="slds-hint-parent">
+                            <div class="slds-grid slds-grid_vertical-align-start slds-box slds-theme_shade slds-align_absolute-center slds-large-size_8-of-12">
+                                <div class="slds-grid slds-grid_vertical slds-col slds-size_1-of-1 slds-large-size_8-of-12 justify-content-center">
+                                    <div class="slds-col slds-p-horizontal_small">
+                                        <div class="slds-truncate custom-name" title="Product Details"><a href="javascript:void(0);">{!acc.Name}</a></div>
+                                    </div>
+                                    <div class="slds-truncate slds-col slds-p-horizontal_small" title="Product Code">{!acc.ProductCode}</div>
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12 slds-col slds-p-horizontal_small  slds-p-bottom_xx-large"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchangedm.</p></div>
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-col slds-p-horizontal_small cart">
+                                        
+                                        <td scope="row">
+                                            
+                                            <div class="slds-grid slds-grid_align-start ">
+                                                <button class="slds-button slds-button_neutral custom slds-box" id="{!index}" onclick="{!c.handleClickinc}">+</button>
+                                                
+                                                <div class="slds-col slds-col slds-size_-of-12 slds-box">
+                                                    <span><div class="custom-code slds-text-align_center" aura:id="demo" title="QuantityUnitOfMeasure">{!acc.counter}</div></span>
+                                                </div>
+                                                
+                                                <button class="slds-button slds-button_neutral custom slds-box" id="{!index}" onclick="{!c.handleClickdec}">-</button>
+                                            </div>
+                                            
+                                            
+                                        </td>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-grid_horizontal-align-start">
+                                    <aura:iteration items="{!acc.PricebookEntries}" var="child">
+                                        <div class="slds-truncate custom-unitprice" title="UnitPrices">USD {!child.UnitPrice}</div>
+                                        
+                                    </aura:iteration> 
+                                </div>
+                            </div>
+                            
+                        </tr>  
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-col slds-align_absolute-center slds-p-bottom_small">
+        <lightning:button label="Submit" class="slds-button_brand" onclick="{!c.addIncome}"  />
+                  
+        </div>
+        <div class="slds-col slds-p-left_large slds-p-right_large slds-p-top_large">
+             <c:ProductFormChild aura:id="childCmp"/>
+            <!--Calling the child component for showing products-->
+        </div>
+        <!--child component for showing products-->
+        <footer class="slds-card__footer"><a href="javascript:void(0);"><!--View All <span class="slds-assistive-text">entity type</span>--></a></footer>
+    </article>
+</aura:component>

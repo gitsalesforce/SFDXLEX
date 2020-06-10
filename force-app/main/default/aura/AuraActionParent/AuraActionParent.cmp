@@ -1,0 +1,145 @@
+<aura:component >
+    <c:AuraActionChild aura:id="childCmp" />
+    <aura:attribute name="myText1" type="Account"/>
+    <aura:attribute name="myText2" type="Contact"/>
+    <aura:attribute name="myText3" type="Opportunity"/>
+    <aura:attribute name="infojs" type="Object[]"/>
+    <div class="slds-modal__content slds-p-around_medium slds-align_absolute-center" id="modal-content-id-1">
+        <lightning:button label="GetList" class="slds-button slds-button_brand slds-m-left--large slds-m-top--large" onclick="{!c.childcmpMethodCall}" />
+        <div class="slds-box slds-text-heading_medium slds-align_absolute-center slds-grid slds-grid_vertical ">
+            <div class="slds-col">
+                <table class="slds-table slds-table_bordered slds-table--header-fixed">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate slds-text-heading_medium" title="Name">Account Name</div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.myText1}" var="con">
+                            <tr>
+                                <th scope="row">
+                                    <div class="slds-truncate slds-text-heading_medium" title="{!con.Name}">{!con.Name}</div>
+                                </th>
+                                <th scope="row">
+                                    <lightning:dynamicIcon type="eq" option="play" alternativeText="Recording in progress"/>
+                                </th>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+        <div class="slds-box slds-text-heading_medium slds-align_absolute-center slds-grid slds-grid_vertical ">
+            <div class="slds-col">
+                <table class="slds-table slds-table_bordered slds-table--header-fixed">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate slds-text-heading_medium" title="Name"> Contact Name</div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.myText2}" var="con">
+                            <tr>
+                                <th scope="row">
+                                    <div class="slds-truncate slds-text-heading_medium" title="{!con.Name}">{!con.Name}</div>
+                                </th>
+                                <th scope="row">
+                                    <lightning:dynamicIcon type="eq" option="play" alternativeText="Recording in progress"/>
+                                </th>
+                                
+                                
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+        <div class="slds-align_absolute-center slds-grid slds-grid_vertical ">
+            
+            <lightning:button variant="Success" label="Opportunity List" title="Opportunity List" class="hvr-grow" onclick="{! c.openmodal }"/>
+            <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        
+                        <lightning:button variant="Neutral" label="Close" title="Destructive action"  onclick="{! c.closeModal }"/>
+                        <h2 id="header43" class="slds-text-heading--medium">Opps Modal</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <div class="slds-col slds-align_absolute-center">
+                            <table class="slds-table slds-table_bordered slds-table--header-fixed">
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col">
+                                            <div class="slds-truncate slds-text-heading_medium" title="Name"> Opportunity Name</div>
+                                        </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.myText3}" var="con">
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="slds-truncate slds-text-heading_medium" title="{!con.Name}">{!con.Name}</div>
+                                            </th>
+                                            <th scope="row">
+                                                <lightning:dynamicIcon type="eq" option="play" alternativeText="Recording in progress"/>
+                                            </th>
+                                            
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop " aura:id="Modalbackdrop"></div>
+        </div>
+    </div>
+    <div class="slds-modal__content slds-p-around_medium slds-align_absolute-center">
+        <div class="slds-col">
+            <table class="slds-table slds-table_bordered slds-table--header-fixed">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="HeapSize">TotalJSHeapSize</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="usedJSHeapSize">UsedJSHeapSize</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate slds-text-heading_medium" title="jsHeapSizeLimit">JSHeapSizeLimit</div>
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.infojs}" var="con">
+                        <tr>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.totalJSHeapSize}">{!con.totalJSHeapSize}</div>
+                            </th>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.usedJSHeapSize}">{!con.usedJSHeapSize}</div>
+                            </th>
+                            <th scope="row">
+                                <div class="slds-truncate slds-text-heading_medium" title="{!con.jsHeapSizeLimit}">{!con.jsHeapSizeLimit}</div>
+                            </th>
+                            
+                            
+                            
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</aura:component>

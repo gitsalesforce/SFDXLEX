@@ -1,0 +1,29 @@
+.THIS{
+    box-sizing: border-box;
+    padding:0px;
+    
+}
+.THIS img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%
+}
+.THIS .title{
+    font-weight:bold;
+}
+.THIS .custom_button {
+  border: none;
+  background: #ff7a59;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 500ms ease; 
+}
+.THIS .mycard{
+    margin:0px auto;
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 100%; overflow-x: hidden; 
+}

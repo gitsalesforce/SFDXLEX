@@ -1,0 +1,48 @@
+<template>  
+  <div class="slds-m-around_medium selectoptions">  
+      <lightning-input class="slds-m-bottom_small" label="Search in Account" value={selectedName} minlength="1" onkeyup={handleKeyChange}>  
+      </lightning-input>  
+    <template if:true={showoptions}>  
+        <template if:true={records}>  
+          <template for:each={records} for:item="record">  
+            <template if:true={record}>  
+              <c-lookup-item key={record.Id} record={record} onlookupselect={handlelookupselect}>  
+              </c-lookup-item>  
+            </template>  
+          </template>  
+        </template>  
+      <template if:true={noRecordsFlag}>  
+        <p>'{searchString}' in not found in Accounts</p>  
+      </template>  
+    </template>  
+    <!--<lightning-card title="Related Contacts" icon-name="custom:custom63">
+      <div class="slds-m-around_medium">
+          <template if:true={contacts.data}>
+              <template for:each={contacts.data} for:item="contact">
+                  <p key={contact.Id}>{contact.name}</p>
+              </template>
+              <template iterator:it={contacts.data}>
+                  <li class="slds-item" style="list-style-type: none;" key={it.value.Id}>
+                          <h3 class="slds-tile__title slds-truncate" title={it.value.Name}><a
+                                  href="javascript:void(0);">{it.value.Name}</a></h3>
+                          <div class="slds-tile__detail slds-border--bottom slds-border--left slds-border--right slds-border--top">
+                              <ul class="slds-list_horizontal">
+                                  <li class="slds-item">Title: {it.value.Title}</li>
+                              </ul>
+                              <ul class="slds-list_horizontal">
+                                  <li class="slds-item">Phone: {it.value.Phone}</li>
+                              </ul>
+                              <ul class="slds-list_horizontal">
+                                  <li class="slds-item">Email: {it.value.Email}</li>
+                              </ul>
+                          </div>
+                  </li>
+              </template>
+          </template>
+          <template if:true={contacts.error}>
+              <p>{contacts.error}</p>
+          </template>
+      </div>
+  </lightning-card>-->
+  </div>  
+</template>

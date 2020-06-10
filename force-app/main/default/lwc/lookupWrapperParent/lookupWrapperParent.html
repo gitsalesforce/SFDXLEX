@@ -1,0 +1,29 @@
+<template>  
+    <lightning-card title="Custom Lookup - Account">  
+      <c-lookup-search label="Account Custom Lookup" selectedsobject="Account"   
+        recordlimit="10"    
+        onlookupselect={handlelookupselectaccount}></c-lookup-search>  
+      <tempate if:true={selectedAccountRecord}>  
+        <p>RECORD ID : {selectedAccountRecord.Id}</p>  
+        <p>RECORD VALUE : {selectedAccountRecord.Name}</p>  
+      </tempate>  
+    </lightning-card>  
+    <lightning-card title="Custom Lookup - Contact">  
+      <c-lookup-search label="Contact" selectedsobject="Contact" recordlimit="10"  
+         onlookupselect={handlelookupselectcontact}>  
+      </c-lookup-search>  
+      <tempate if:true={selectedContactRecord}>  
+        <p>RECORD ID : {selectedContactRecord.Id}</p>  
+        <p>RECORD VALUE : {selectedContactRecord.Name}</p>  
+      </tempate>  
+    </lightning-card>  
+    <lightning-card title="Custom Lookup - Opportunity">  
+        <c-lookup-search label="Opportunity" selectedsobject="Opportunity" recordlimit="10"  
+           onlookupselect={handlelookupselectopps}>  
+        </c-lookup-search>  
+        <tempate if:true={selectedOppsRecord}>  
+          <p>RECORD ID : {selectedOppsRecord.Id}</p>  
+          <p>RECORD VALUE : {selectedOppsRecord.Name}</p>  
+        </tempate>  
+      </lightning-card>  
+  </template>

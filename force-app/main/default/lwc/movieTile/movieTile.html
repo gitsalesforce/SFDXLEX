@@ -1,0 +1,23 @@
+<template>
+    <div class="content slds-m-around_x-large">
+        <img
+            src={posterPath}
+            class="slds-align_absolute-center"
+            alt="movie poster"
+        />
+        <br/>
+       <div class="slds-m-horizontal_x-small">
+       <lightning-card >
+        <div class="slds-col">
+            <p class="title slds-align_absolute-center">{title}<br/><br/></p>
+            <p class="slds-align_absolute-center">RELEASE DATE : {releaseDate}</p>
+            <p class="slds-align_absolute-center">RATING : {vote} / 10 </p>
+            <p class="slds-align_absolute-center">LANGUAGE : {language}<br/></p>
+            <div class="slds-m-horizontal_medium">
+                <p>STORY : {overview}</p>
+            </div>
+        </div>
+       </lightning-card>
+    </div>
+    </div>
+</template>

@@ -1,0 +1,10 @@
+.content {
+    padding: 8px;
+    background-color: #eaeaea;
+    border-radius: 0.5rem;
+    display: flex;
+}
+.title {
+    font-weight: bold;
+    text-transform: uppercase;
+}

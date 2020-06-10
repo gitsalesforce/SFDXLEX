@@ -1,0 +1,11 @@
+<aura:component controller="AuraActionServerCall" >
+    <aura:method name="AccountDetailMethodCall">
+        <aura:attribute name="callbackaccount" type="Function"/>
+    </aura:method>
+    <aura:method name="ContactDetailMethodCall">
+        <aura:attribute name="callbackcontact" type="Function"/>
+    </aura:method>
+    <aura:method name="OppsDetailMethodCall">
+        <aura:attribute name="callbackopps" type="Function"/>
+    </aura:method>
+</aura:component>

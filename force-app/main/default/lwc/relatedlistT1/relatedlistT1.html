@@ -1,0 +1,36 @@
+<template>
+       <lightning-layout-item>
+        <lightning-card title="Related Contacts" icon-name="custom:custom63">
+            <template if:true={accountRecord}>  
+                <h1>Selected Account : <b>{accountRecord.Name}</b></h1>  
+              </template> 
+            <div class="slds-m-around_medium">
+                <template if:true={contacts.data}>
+                    <template for:each={contacts.data} for:item="contact">
+                        <p key={contact.Id}>{contact.name}</p>
+                    </template>
+                    <template iterator:it={contacts.data}>
+                        <li class="slds-item" style="list-style-type: none;" key={it.value.Id}>
+                                <h3 class="slds-tile__title slds-truncate" title={it.value.Name}><a
+                                        href="javascript:void(0);">{it.value.Name}</a></h3>
+                                <div class="slds-tile__detail slds-border--bottom slds-border--left slds-border--right slds-border--top">
+                                    <ul class="slds-list_horizontal">
+                                        <li class="slds-item">Title: {it.value.Title}</li>
+                                    </ul>
+                                    <ul class="slds-list_horizontal">
+                                        <li class="slds-item">Phone: {it.value.Phone}</li>
+                                    </ul>
+                                    <ul class="slds-list_horizontal">
+                                        <li class="slds-item">Email: {it.value.Email}</li>
+                                    </ul>
+                                </div>
+                        </li>
+                    </template>
+                </template>
+                <template if:true={contacts.error}>
+                    <p>{contacts.error}</p>
+                </template>
+            </div>
+        </lightning-card>
+       </lightning-layout-item>
+  </template>
