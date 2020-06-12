@@ -4,6 +4,9 @@ public class GuardianNews {
     private static final string API_KEY2 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
     private static final string API_KEY3 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
     private static final string API_KEY4 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
+    private static final string API_KEY5 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
+    private static final string API_KEY6 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
+    private static final string API_KEY7 = '689aae25-d6ce-41a1-a02e-2f5b372c9c80';
 //contents
 //Tags
 //Section
